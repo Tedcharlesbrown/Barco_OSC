@@ -185,6 +185,7 @@ def main():
     while not finished:
         # …
         osc_process()
+        sleep(0.0025)
         # …
 
     # Properly close the system.
