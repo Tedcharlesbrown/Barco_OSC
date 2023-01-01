@@ -5,6 +5,11 @@ import time
 import threading
 import socket
 
+import xml.etree.ElementTree as ET
+
+import json
+
+import pythonping
 from pythonping import ping
 
 from osc4py3.as_eventloop import *
@@ -21,22 +26,108 @@ BARCO_IP_ADDRESS = ""
 #     response = pythonping.ping(ip_address)
 #     return response.success
 
-def convert_layer_id(n: int) -> int:
+def convert_destination_id(n: int) -> int:
+    return n - 1
+
+def convert_layer_id(n: str) -> int:
+    if n.isdigit():
+        n = int(n)
+
     if n != 0:
         return n * 2 - 2
     else:
         return n
 
-def send_barco_xml_threaded(url: str, screenDest_id: int, layers: list, opacity: int):
-  threading.Thread(target=send_barco_xml, args=(url, screenDest_id, layers, opacity)).start()
-  # 50 = 0.3
+# def send_barco_xml_threaded(url: str, screenDest_id: int, layers: list, opacity: int):
+#     threading.Thread(target=send_barco_xml, args=(url, screenDest_id, layers, opacity)).start()
+# #   50 = 0.3
+#   # 25 = 0.5
+#   # 15 = 0.75
+#   # 11.25 = 1
+#     sleep_time = 0.1 / 11.25
+#     # sleep_time = 0.5
+#     sleep(sleep_time)
+
+# def send_barco_xml(url: str, screenDest_id: int, layers: list, opacity: int):
+#     screenDest_id = convert_destination_id(screenDest_id)
+
+#     xml_data =f"""
+#     <System id="0" GUID="0" OPID="0">
+#     <DestMgr id="0">
+#     <ScreenDestCol id="0">
+#     <ScreenDest id="{screenDest_id}">
+#     <LayerCollection id="0">
+#     """
+
+#     xml_suffix = f"""
+#     </LayerCollection>
+#     </ScreenDest>
+#     </ScreenDestCol>
+#     </DestMgr>
+#     </System>
+#     """
+
+#     for layer in layers:
+#         layer = convert_layer_id(layer)
+
+#         # print(layer)
+
+#         xml_layer = f"""
+#         <Layer id="{layer}">
+#         <LayerCfg id="0">
+#         <LayerState id="0">
+#         <PIP id="0">
+#         <Opacity>{opacity}</Opacity>
+#         </PIP>
+#         </LayerState>
+#         </LayerCfg>
+#         </Layer>
+#         """
+
+#         xml_data += xml_layer
+
+#     xml_data += xml_suffix
+
+#     # print(f"Sending: DESTINATION:{screenDest_id}, LAYER:{layer_id}, OPACITY:{opacity}")
+#     # print(f"Sending: DESTINATION:{screenDest_id}, OPACITY:{opacity}")
+    
+#     # Create a TCP socket
+#     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+#     # Connect to the specified host and port
+#     s.connect((url, 9876))
+
+#     # Send the XML data over the socket
+#     s.sendall(xml_data.encode())
+
+#     # Receieve Data
+#     data = s.recv(9876)
+
+#     # Close the socket
+#     s.close()
+
+#     # # Send 4 ICMP echo request packets to the specified host and measure the latency
+#     # latency = pythonping.ping(url, count=1)
+
+#     # # Print the latency
+#     # print(f'Latency: {latency.rtt_avg:.2f} seconds')
+
+def send_barco_xml_threaded(url: str, screenDest_id: int, layers: list, opacity: int, start_time: float):
+    threading.Thread(target=send_barco_xml, args=(url, screenDest_id, layers, opacity,start_time)).start()
+#   50 = 0.3
   # 25 = 0.5
   # 15 = 0.75
   # 11.25 = 1
-  sleep_time = 0.1 / 11.25
-  sleep(sleep_time)
+    # sleep_time = 0.1 / 11.25
+    sleep_time = 1
+    sleep(sleep_time)
 
-def send_barco_xml(url: str, screenDest_id: int, layers: list, opacity: int):
+LATENCY = 0
+
+def send_barco_xml(url: str, screenDest_id: int, layers: list, opacity: int, start_time: float):
+    global LATENCY
+    screenDest_id = convert_destination_id(screenDest_id)
+
     xml_data =f"""
     <System id="0" GUID="0" OPID="0">
     <DestMgr id="0">
@@ -53,9 +144,10 @@ def send_barco_xml(url: str, screenDest_id: int, layers: list, opacity: int):
     </System>
     """
 
-    for layer in range(len(layers)):
-
+    for layer in layers:
         layer = convert_layer_id(layer)
+
+        # print(layer)
 
         xml_layer = f"""
         <Layer id="{layer}">
@@ -69,23 +161,42 @@ def send_barco_xml(url: str, screenDest_id: int, layers: list, opacity: int):
         </Layer>
         """
 
-        
+        xml_data += xml_layer
 
-
+    xml_data += xml_suffix
 
     # print(f"Sending: DESTINATION:{screenDest_id}, LAYER:{layer_id}, OPACITY:{opacity}")
+    # print(f"Sending: DESTINATION:{screenDest_id}, OPACITY:{opacity}")
+    # print(LATENCY)
 
-    # # Create a TCP socket
-    # s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    if LATENCY < 0.1:
+    
+        # Create a TCP socket
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    # # Connect to the specified host and port
-    # s.connect((url, 9876))
+        # Connect to the specified host and port
+        s.connect((url, 9876))
 
-    # # Send the XML data over the socket
-    # s.sendall(xml_data.encode())
+        # Send the XML data over the socket
+        s.sendall(xml_data.encode())
 
-    # # Close the socket
-    # s.close()
+        # Receieve Data
+        data = s.recv(9876)
+
+        # Calculate the elapsed time
+        LATENCY = time.time() - start_time
+
+        # Print the latency
+        print(f'Latency: {LATENCY:.2f} seconds')
+    
+    else: 
+        sleep(0.5)
+        LATENCY = 0
+
+
+
+        # Close the socket
+        s.close()
 
 # ---------------------------------------------------------------------------- #
 #                                      OSC                                     #
@@ -99,29 +210,40 @@ def remap(input_value: float, in_min: float, in_max: float, out_min: float, out_
     output_value = input_value_scaled * (out_max - out_min) + out_min
     return output_value
 
-def get_pattern(address: str, x: int) -> str:
+def remap_value(input_value: float) -> float:
+    # Scale the input value from the input range to the 0-1 range
+    input_value_scaled = (input_value - 0) / (1 - 0)
+    # Scale the input value from the 0-1 range to the output range
+    output_value = input_value_scaled * (100 - 0) + 0
+    return output_value
+
+def get_address(address: str, x: int) -> str:
     address_list = address.split('/')
     address_list.pop(0)
 
     if x > len(address_list):
         return False
+    elif x == -1:
+        return len(address_list)
     else:
         return address_list[x]
 
 def handle_args_1(address, value):
-    # print(get_pattern(address,0).lower())
-    top = get_pattern(address,0).lower()
-    if top == "barco":
-        layers = get_pattern(address,1)
-        layers = layers.split(',')
-        # print("TEST")
-        print(layers,value)
-        # print(get_pattern(address,layer))
+    # Record the current time
+    start_time = time.time()
 
-    # if address[:7] == "/barco/":
-    # dest = int(parse_layer(address)[0])
-    # layer = int(parse_layer(address)[1])
-    # send_barco_xml_threaded(BARCO_IP_ADDRESS,dest,layer,int(remap(value,0,1,0,100)))
+    address_length = (get_address(address,-1) - 1)
+
+    # print(address_length)
+    main_address = get_address(address,0).lower()
+
+    # IF NO SCREEN DESTINATION GIVEN
+    if main_address == "barco" and address_length == 1:
+        layers = get_address(address,1)
+        layers = layers.split(',')
+        # send_barco_xml("192.168.0.143",1,layers,remap_value(value))
+        send_barco_xml("192.168.0.143",1,layers,remap_value(value),start_time)
+
 
 
 # ---------------------------------------------------------------------------- #
