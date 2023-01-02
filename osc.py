@@ -50,23 +50,23 @@ def handle_args_1(address, arg_1):
 
 def handle_args_2(address, arg_1, arg_2):
 
-    address_length = (get_address(address,-1) - 1)
+    address_length = get_address(address,-1) - 1
 
     main_address = get_address(address,0).lower()
 
     if main_address == "barco":
-        if get_address(address,1).lower() == "fade" and address_length == 4:
+        if address_length == 0:
+            arg_1 = arg_1.split(',')
+            send_barco_xml(1,arg_1,normalize(arg_2))
+        elif get_address(address,1).lower() == "fade" and address_length == 4:
             low_value = get_address(address,2)
             high_value = get_address(address,3)
             speed = get_address(address,4)
             arg_2 = arg_2.split(',')
             fade_xml_value(low_value,high_value,speed,arg_1,arg_2)
-        if address_length == 0:
-            arg_1 = arg_1.split(',')
-            send_barco_xml(1,arg_1,normalize(arg_2))
         else:
-            pass
-            # print(f"INVALID OSC RECEIVED - CHECK ADDRESS: {address}")
+            # pass
+            print(f"INVALID OSC RECEIVED - CHECK ADDRESS: {address}")
     else:
         print(f"INVALID OSC RECEIVED - CHECK ADDRESS: {address}")
 
