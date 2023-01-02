@@ -14,7 +14,7 @@ If you are controlling more than one layer at a time, it is best to do that with
   - Sends argument to Screen 1, Layers 1 and 2
 - `/barco/2/1 x`
   - Sends argument to Screen 2, Layer 1
-  - 
+
 ### Arguments Only
 - `/barco 1 x`
   - Sends argument to Screen 1, Layer 1
