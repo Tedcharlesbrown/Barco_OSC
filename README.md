@@ -31,5 +31,5 @@ If you are controlling more than one layer at a time, it is best to do that with
 [JSON RPC for Event Master processors](https://www.barco.com/en/support/docs/TDE11446)
 
 ### Dependencies
-osc4py3
-pythonping
+- osc4py3
+- pythonping
