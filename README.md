@@ -1,4 +1,4 @@
-# osc_to_barco
+# Barco OSC
  Send osc to barco, to control layer opacity
 
 ## Disclaimer
