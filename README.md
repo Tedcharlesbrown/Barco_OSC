@@ -2,7 +2,7 @@
  Send osc to barco, to control layer opacity
 
 ## Disclaimer
-Use this app at your own risk. Sending too many TCP packets / the speed of the network may cause the E2 to crash. If this happens, it is best to do a soft reset from the E2 once everything reconnects.
+Use this app at your own risk. Sending too many TCP packets may cause the E2 to crash. If this happens, it is best to do a soft reset from the E2 once everything reconnects.
 
 If you are controlling more than one layer at a time, it is best to do that with a single osc message, rather than sending an osc message per layer.
 
