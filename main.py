@@ -14,27 +14,23 @@ from barco import set_barco_address
 # ---------------------------------------------------------------------------- #
 
 def main():
-    # global BARCO_IP_ADDRESS
+    global BARCO_IP_ADDRESS
 
-    # PORT_NUMBER = input("What port should be used to receive OSC? ")
-    # if PORT_NUMBER.isdigit():
-    #     PORT_NUMBER = int(PORT_NUMBER)
-    # else:
-    #     print("INVALID PORT NUMBER")
-    #     main()
-    # barco_ip_address = input("What is the IP address of the Barco Device? ")
-    # if isinstance(barco_ip_address,str):
-    #     print(f"Connecting to Barco Device at: {barco_ip_address}")
-    #     try:
-    #         ping(barco_ip_address)
-    #     except:
-    #         print("COULD NOT CONNECT TO BARCO DEVICE")
-    #         main()
-
-    PORT_NUMBER = 9876
-    barco_ip_address = "192.168.0.143"
+    PORT_NUMBER = input("What port should be used to receive OSC? ")
+    if PORT_NUMBER.isdigit():
+        PORT_NUMBER = int(PORT_NUMBER)
+    else:
+        print("INVALID PORT NUMBER")
+        main()
+    barco_ip_address = input("What is the IP address of the Barco Device? ")
+    if isinstance(barco_ip_address,str):
+        print(f"Connecting to Barco Device at: {barco_ip_address}")
+        try:
+            ping(barco_ip_address)
+        except:
+            print("COULD NOT CONNECT TO BARCO DEVICE")
+            main()
         
-
     print("PING SUCCESSFUL")
     set_barco_address(barco_ip_address)
     print("---------------")

@@ -25,13 +25,6 @@ def convert_layer_id(n: str) -> int:
     else:
         return n
 
-# TODO: Lerp between opacity before and after sleep
-# TODO: Add over average time, don't sleep, but wait a couple seconds to continue sending
-
-# LATENCY = 0
-# latency_average = []
-# over_average = False
-
 def send_barco_xml(screenDest_id: str, layers: list, opacity: int):
     global BARCO_IP_ADDRESS
     # global LATENCY, latency_average, over_average
@@ -76,10 +69,6 @@ def send_barco_xml(screenDest_id: str, layers: list, opacity: int):
 
     print(f"Sending: DESTINATION: {screenDest_id + 1}, LAYER:{layers}, OPACITY:{opacity:.2f}")
 
-    # average_limit = 0.10
-    # latency_limit = 0.15
-    # if LATENCY < latency_limit:
-
     # Create a TCP socket
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -89,33 +78,3 @@ def send_barco_xml(screenDest_id: str, layers: list, opacity: int):
     # Send the XML data over the socket
     s.sendall(xml_data.encode())
 
-    # # Receieve Data
-    # data = s.recv(9876)
-
-    # # Calculate the elapsed time
-    # LATENCY = time.time() - start_time
-
-    # Close the socket
-    # s.close()
-    # else:
-    #     print(f"LATENCY TOO HIGH, SLEEPING: {(LATENCY - latency_limit):.2f}")
-    #     sleep(LATENCY - latency_limit)
-    #     LATENCY = 0
-    
-
-    # ------------------------------ AVERAGE LATENCY ----------------------------- #
-
-    # latency_average.append(LATENCY)
-    # if len(latency_average) > 10:
-    #     latency_average.pop(0)
-
-    # # Calculate the average of the latencies
-    # avg_latency = sum(latency_average) / len(latency_average)
-
-    # if avg_latency > average_limit:
-    #     print(f"AVERAGE LATENCY TOO HIGH: {avg_latency}, SLEEPING TO PREVENT CRASH")
-    #     sleep(1)
-        
-    # else:
-    #     # Print the average latency
-    #     print(f'Average Latency: {avg_latency:.2f} seconds')
