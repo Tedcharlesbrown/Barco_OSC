@@ -7,7 +7,7 @@ Use this app at your own risk. Sending too many TCP packets may cause the E2 to 
 If you are controlling more than one layer at a time, it is best to do that with a single osc message, rather than sending an osc message per layer.
 
 ## Download
-[Download latest release from the releases page](https://github.com/Tedcharlesbrown/Barco_OSC/releases/download/0.3.1/BarcoOSC_v0.3.1.exe)
+[Download latest release from the releases page](https://github.com/Tedcharlesbrown/Barco_OSC/releases)
 
  ## Available OSC commands
  ### Address only
