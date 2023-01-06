@@ -50,19 +50,21 @@ def send_barco_xml(screenDest_id: str, layers: list, opacity: int):
 
         layer = convert_layer_id(layer)   
 
-        xml_layer = f"""
-        <Layer id="{layer}">
-        <LayerCfg id="0">
-        <LayerState id="0">
-        <PIP id="0">
-        <Opacity>{opacity}</Opacity>
-        </PIP>
-        </LayerState>
-        </LayerCfg>
-        </Layer>
-        """
+        for sub_layer in range(0,2):
 
-        xml_data += xml_layer
+            xml_layer = f"""
+            <Layer id="{layer + sub_layer}">
+            <LayerCfg id="0">
+            <LayerState id="0">
+            <PIP id="0">
+            <Opacity>{opacity}</Opacity>
+            </PIP>
+            </LayerState>
+            </LayerCfg>
+            </Layer>
+            """
+
+            xml_data += xml_layer
 
     xml_data += xml_suffix
 
