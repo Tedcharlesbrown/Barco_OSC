@@ -1,6 +1,8 @@
 import socket
 from typing import Union
-# from osc_to_barco import BARCO_IP_ADDRESS
+from utils import Target
+import requests
+import json
 
 BARCO_IP_ADDRESS = ""
 
@@ -21,14 +23,17 @@ def convert_layer_id(n: str) -> int:
         n = int(n)
 
     if n != 0:
+        # always returns 
         return n * 2 - 2
     else:
         return n
 
-def send_barco_xml(screenDest_id: str, layers: list, opacity: int):
+def send_barco_xml(target: Target, screenDest_id: str, layers: str, opacity: int):
     global BARCO_IP_ADDRESS
     # global LATENCY, latency_average, over_average
+    
     screenDest_id = convert_destination_id(screenDest_id)
+    layers = layers.split(',')
 
     xml_data =f"""
     <System id="0" GUID="0" OPID="0">
@@ -47,11 +52,11 @@ def send_barco_xml(screenDest_id: str, layers: list, opacity: int):
     """
 
     for layer in layers:
-
-        layer = convert_layer_id(layer)   
+        
+        # get layer base
+        layer = convert_layer_id(layer)
 
         for sub_layer in range(0,2):
-
             xml_layer = f"""
             <Layer id="{layer + sub_layer}">
             <LayerCfg id="0">
@@ -63,7 +68,6 @@ def send_barco_xml(screenDest_id: str, layers: list, opacity: int):
             </LayerCfg>
             </Layer>
             """
-
             xml_data += xml_layer
 
     xml_data += xml_suffix
@@ -80,3 +84,53 @@ def send_barco_xml(screenDest_id: str, layers: list, opacity: int):
     # Send the XML data over the socket
     s.sendall(xml_data.encode())
 
+def get_barco_layers() -> bool: 
+    """Returns false if 'evens' are program, true if 'odds' are program"""
+    offline = True
+    data = None
+
+    # ---------------------------------------------------------------------------- #
+    #                     REQUEST ONLY WORKS WITH ACTUAL BARCO                     #
+    # ---------------------------------------------------------------------------- #
+    if (offline == False):
+        global BARCO_IP_ADDRESS
+        # Set the URL and headers
+        url = f"http://{BARCO_IP_ADDRESS}:9999"
+        headers = {"Content-Type": "application/json"}
+
+        # Create the JSON message
+        message = {
+            "params": {"id": 0},
+            "method": "listContent",
+            "id": "1234",
+            "jsonrpc": "2.0"
+        }
+
+        # Send the request
+        response = requests.post(url, headers=headers, json=message)
+        
+        # Extract the JSON data from the response
+        data = response.json()
+        # Print the response
+        print(response.text)
+
+    # ---------------------------------------------------------------------------- #
+    #                   ONLY FOR OFFLINE EDITING, USE SAMPLE JSON                  #
+    # ---------------------------------------------------------------------------- #
+
+    else:
+        # Open the JSON file
+        with open('sample_json/sample_1.json', 'r') as f:
+            # Load the JSON data into a Python object
+            data = json.load(f)
+
+
+    # ---------------------------------------------------------------------------- #
+    #                                  END IF ELSE                                 #
+    # ---------------------------------------------------------------------------- #
+    # TODO IF NEEDED, GET ALL LAYERS
+    
+    # layer_0 = data['result']['response']['Layers'][0]['id']
+    is_preview = bool(data['result']['response']['Layers'][0]['PvwMode'])
+    
+    # print(is_preview)
