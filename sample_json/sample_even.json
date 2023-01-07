@@ -1,0 +1,1143 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "success": 0,
+        "response": {
+            "id": 0,
+            "Name": "DEST-LED",
+            "IsActive": 1,
+            "BGLyr": [
+                {
+                    "id": 0,
+                    "LastBGSourceIndex": 1,
+                    "BGShowMatte": 0,
+                    "BGColor": {
+                        "id": 0,
+                        "Red": 0,
+                        "Green": 0,
+                        "Blue": 0
+                    }
+                },
+                {
+                    "id": 1,
+                    "LastBGSourceIndex": 1,
+                    "BGShowMatte": 0,
+                    "BGColor": {
+                        "id": 0,
+                        "Red": 0,
+                        "Green": 0,
+                        "Blue": 0
+                    }
+                }
+            ],
+            "Layers": [
+                {
+                    "id": 0,
+                    "Name": "Layer1-B",
+                    "LastSrcIdx": 14,
+                    "PvwMode": 0,
+                    "PgmMode": 1,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 0,
+                    "PgmZOrder": 0,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 971,
+                            "VPos": 215,
+                            "HSize": 1183,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": -106,
+                            "VPos": 0,
+                            "HSize": 2133,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 972
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 1,
+                    "Name": "Layer1-B",
+                    "LastSrcIdx": 14,
+                    "PvwMode": 1,
+                    "PgmMode": 0,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 0,
+                    "PgmZOrder": 0,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 971,
+                            "VPos": 215,
+                            "HSize": 1183,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": -106,
+                            "VPos": 0,
+                            "HSize": 2133,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 972
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "Name": "Layer2-B",
+                    "LastSrcIdx": 15,
+                    "PvwMode": 0,
+                    "PgmMode": 1,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 2,
+                    "PgmZOrder": 2,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 3972,
+                            "VPos": 215,
+                            "HSize": 1183,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": -106,
+                            "VPos": 0,
+                            "HSize": 2133,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 14,
+                            "VPos": 78,
+                            "HSize": 1891,
+                            "VSize": 1050
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1200
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 6.5,
+                            "Left": 0.75,
+                            "Right": 0.75,
+                            "Bottom": 6
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "Name": "Layer2-B",
+                    "LastSrcIdx": 15,
+                    "PvwMode": 1,
+                    "PgmMode": 0,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 2,
+                    "PgmZOrder": 2,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 3972,
+                            "VPos": 215,
+                            "HSize": 1183,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": -106,
+                            "VPos": 0,
+                            "HSize": 2133,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 14,
+                            "VPos": 78,
+                            "HSize": 1891,
+                            "VSize": 1050
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1200
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 6.5,
+                            "Left": 0.75,
+                            "Right": 0.75,
+                            "Bottom": 6
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "Name": "Layer3-B",
+                    "LastSrcIdx": 21,
+                    "PvwMode": 0,
+                    "PgmMode": 1,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 4,
+                    "PgmZOrder": 4,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 5175,
+                            "VPos": 215,
+                            "HSize": 460,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": 96,
+                            "VPos": 0,
+                            "HSize": 1728,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 587,
+                            "VPos": 0,
+                            "HSize": 747,
+                            "VSize": 1200
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1200
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 30.55,
+                            "Right": 30.55,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "Name": "Layer3-B",
+                    "LastSrcIdx": 21,
+                    "PvwMode": 1,
+                    "PgmMode": 0,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 4,
+                    "PgmZOrder": 4,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 5175,
+                            "VPos": 215,
+                            "HSize": 460,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": 96,
+                            "VPos": 0,
+                            "HSize": 1728,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 587,
+                            "VPos": 0,
+                            "HSize": 747,
+                            "VSize": 1200
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1200
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 30.55,
+                            "Right": 30.55,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 6,
+                    "Name": "Layer4-B",
+                    "LastSrcIdx": 18,
+                    "PvwMode": 0,
+                    "PgmMode": 1,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 6,
+                    "PgmZOrder": 6,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 6836,
+                            "VPos": 215,
+                            "HSize": 1017,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 134,
+                            "VPos": 0,
+                            "HSize": 1651,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 7,
+                            "Right": 7,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 7,
+                    "Name": "Layer4-B",
+                    "LastSrcIdx": 18,
+                    "PvwMode": 1,
+                    "PgmMode": 0,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 6,
+                    "PgmZOrder": 6,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 6836,
+                            "VPos": 215,
+                            "HSize": 1017,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 134,
+                            "VPos": 0,
+                            "HSize": 1651,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 7,
+                            "Right": 7,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 8,
+                    "Name": "Layer5-B",
+                    "LastSrcIdx": 16,
+                    "PvwMode": 0,
+                    "PgmMode": 1,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 8,
+                    "PgmZOrder": 8,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 7873,
+                            "VPos": 215,
+                            "HSize": 1182,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": -106,
+                            "VPos": 0,
+                            "HSize": 2133,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 972
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 9,
+                    "Name": "Layer5-B",
+                    "LastSrcIdx": 16,
+                    "PvwMode": 1,
+                    "PgmMode": 0,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 8,
+                    "PgmZOrder": 8,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 7873,
+                            "VPos": 215,
+                            "HSize": 1182,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": -106,
+                            "VPos": 0,
+                            "HSize": 2133,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 972
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 10,
+                    "Name": "Layer6-B",
+                    "LastSrcIdx": 23,
+                    "PvwMode": 0,
+                    "PgmMode": 1,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 10,
+                    "PgmZOrder": 10,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 2769,
+                            "VPos": 215,
+                            "HSize": 1182,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 11,
+                    "Name": "Layer6-B",
+                    "LastSrcIdx": 23,
+                    "PvwMode": 1,
+                    "PgmMode": 0,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 10,
+                    "PgmZOrder": 10,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 2769,
+                            "VPos": 215,
+                            "HSize": 1182,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 12,
+                    "Name": "Layer7-B",
+                    "LastSrcIdx": 23,
+                    "PvwMode": 0,
+                    "PgmMode": 1,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 12,
+                    "PgmZOrder": 12,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 5655,
+                            "VPos": 215,
+                            "HSize": 1182,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 13,
+                    "Name": "Layer7-B",
+                    "LastSrcIdx": 23,
+                    "PvwMode": 1,
+                    "PgmMode": 0,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 12,
+                    "PgmZOrder": 12,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 5655,
+                            "VPos": 215,
+                            "HSize": 1182,
+                            "VSize": 665
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 14,
+                    "Name": "Layer8-A",
+                    "LastSrcIdx": 25,
+                    "PvwMode": 0,
+                    "PgmMode": 0,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 14,
+                    "PgmZOrder": 14,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 1200,
+                            "VPos": 215,
+                            "HSize": 1351,
+                            "VSize": 760
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 15,
+                    "Name": "Layer8-B",
+                    "LastSrcIdx": 25,
+                    "PvwMode": 0,
+                    "PgmMode": 0,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 14,
+                    "PgmZOrder": 14,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 1200,
+                            "VPos": 215,
+                            "HSize": 1351,
+                            "VSize": 760
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 16,
+                    "Name": "Layer9-A",
+                    "LastSrcIdx": 25,
+                    "PvwMode": 0,
+                    "PgmMode": 0,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 16,
+                    "PgmZOrder": 16,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 7374,
+                            "VPos": 120,
+                            "HSize": 1661,
+                            "VSize": 934
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 17,
+                    "Name": "Layer9-B",
+                    "LastSrcIdx": -1,
+                    "PvwMode": 0,
+                    "PgmMode": 0,
+                    "LinkLayerId": -1,
+                    "LinkDestId": -1,
+                    "Capacity": 1,
+                    "PvwZOrder": 16,
+                    "PgmZOrder": 16,
+                    "Freeze": 0,
+                    "ScalingMode": 2,
+                    "Window": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Source": [
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        },
+                        {
+                            "HPos": 0,
+                            "VPos": 0,
+                            "HSize": 1920,
+                            "VSize": 1080
+                        }
+                    ],
+                    "Mask": [
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        },
+                        {
+                            "id": 0,
+                            "Top": 0,
+                            "Left": 0,
+                            "Right": 0,
+                            "Bottom": 0
+                        }
+                    ]
+                }
+            ],
+            "Transition": [
+                {
+                    "id": 0,
+                    "TransTime": 30,
+                    "TransPos": 0,
+                    "ArmMode": 1
+                },
+                {
+                    "id": 1,
+                    "TransTime": 30,
+                    "TransPos": 0,
+                    "ArmMode": 0
+                }
+            ],
+            "OutputCfg": [
+                {
+                    "id": 0,
+                    "Name": "SDIOutput1",
+                    "OutputAOI": [
+                        {
+                            "id": 0,
+                            "TestPattern": [
+                                {
+                                    "id": 0,
+                                    "TestPatternMode": 0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": 1,
+                    "Name": "SDIOutput2",
+                    "OutputAOI": [
+                        {
+                            "id": 0,
+                            "TestPattern": [
+                                {
+                                    "id": 0,
+                                    "TestPatternMode": 0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "Name": "SDIOutput3",
+                    "OutputAOI": [
+                        {
+                            "id": 0,
+                            "TestPattern": [
+                                {
+                                    "id": 0,
+                                    "TestPatternMode": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "id": "1234"
+}

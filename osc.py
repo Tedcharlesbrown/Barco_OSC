@@ -9,6 +9,7 @@ from barco import get_barco_layers
 
 program_start = time.time()
 last_packet = 0
+is_program_odd = False
 # ---------------------------------------------------------------------------- #
 #                                 OSC ARGUMENTS                                #
 # ---------------------------------------------------------------------------- #
@@ -32,17 +33,17 @@ def handle_args_3(address, arg_1, arg_2, arg_3):
 
 def osc_to_barco(msg):
     global last_packet
+    global is_program_odd
     current_packet = time.time() - program_start
-    is_program_odd = False
+    delay_request = 2;
 
-    if msg.target != Target.BOTH and current_packet > last_packet + 1:
-        # is_program_odd = get_barco_layers()
-        pass
+    if msg.target != Target.BOTH and current_packet > last_packet + delay_request:
+        is_program_odd = get_barco_layers()
 
     if msg.is_fade:
         fade_xml_value(msg.target,msg.fade_start,msg.fade_end,msg.fade_time,msg.destination,msg.layer)
     else:
-        send_barco_xml(msg.target,msg.destination,msg.layer,msg.value)
+        send_barco_xml([msg.target,is_program_odd],msg.destination,msg.layer,msg.value)
 
     last_packet = current_packet
 

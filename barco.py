@@ -28,10 +28,24 @@ def convert_layer_id(n: str) -> int:
     else:
         return n
 
-def send_barco_xml(target: Target, screenDest_id: str, layers: str, opacity: int):
+def barco_payload(layer,opacity) -> str:
+    xml_layer = f"""
+                <Layer id="{layer}">
+                <LayerCfg id="0">
+                <LayerState id="0">
+                <PIP id="0">
+                <Opacity>{opacity}</Opacity>
+                </PIP>
+                </LayerState>
+                </LayerCfg>
+                </Layer>
+                """
+
+    return xml_layer
+
+def send_barco_xml(target: list[Target,bool], screenDest_id: str, layers: str, opacity: int):
     global BARCO_IP_ADDRESS
     # global LATENCY, latency_average, over_average
-    
     screenDest_id = convert_destination_id(screenDest_id)
     layers = layers.split(',')
 
@@ -51,27 +65,52 @@ def send_barco_xml(target: Target, screenDest_id: str, layers: str, opacity: int
     </System>
     """
 
+    # for layer in layers:
+    #     # get layer base
+    #     layer = convert_layer_id(layer)
+    #     if target[0] == Target.BOTH:
+    #         for sub_layer in range(0,2):
+    #             xml_layer = f"""
+    #             <Layer id="{layer + sub_layer}">
+    #             <LayerCfg id="0">
+    #             <LayerState id="0">
+    #             <PIP id="0">
+    #             <Opacity>{opacity}</Opacity>
+    #             </PIP>
+    #             </LayerState>
+    #             </LayerCfg>
+    #             </Layer>
+    #             """
+    #             xml_data += xml_layer
+
     for layer in layers:
-        
         # get layer base
         layer = convert_layer_id(layer)
 
-        for sub_layer in range(0,2):
-            xml_layer = f"""
-            <Layer id="{layer + sub_layer}">
-            <LayerCfg id="0">
-            <LayerState id="0">
-            <PIP id="0">
-            <Opacity>{opacity}</Opacity>
-            </PIP>
-            </LayerState>
-            </LayerCfg>
-            </Layer>
-            """
-            xml_data += xml_layer
+        if target[0] == Target.BOTH:
+            for sub_layer in range(0,2):
+                xml_data += barco_payload(sub_layer,opacity)
+
+        elif target[0] == Target.PROGRAM:
+            # if program is odd
+            if target[1]:
+                layer = layer + 1
+    
+            xml_data += barco_payload(layer,opacity)
+
+        elif target[0] == Target.PREVIEW:
+            # if program is odd
+            if target[1]:
+                pass
+            else:
+                layer += 1
+
+            xml_data += barco_payload(layer,opacity) 
+    
 
     xml_data += xml_suffix
 
+    # print(xml_data)
 
     print(f"Sending: DESTINATION: {screenDest_id + 1}, LAYER:{layers}, OPACITY:{opacity:.2f}")
 
@@ -120,7 +159,7 @@ def get_barco_layers() -> bool:
 
     else:
         # Open the JSON file
-        with open('sample_json/sample_1.json', 'r') as f:
+        with open('sample_json/sample.json', 'r') as f:
             # Load the JSON data into a Python object
             data = json.load(f)
 
@@ -132,5 +171,5 @@ def get_barco_layers() -> bool:
     
     # layer_0 = data['result']['response']['Layers'][0]['id']
     is_preview = bool(data['result']['response']['Layers'][0]['PvwMode'])
-    
-    # print(is_preview)
+    print(f'PROGRAM IS ODD: {is_preview}')
+    return is_preview
