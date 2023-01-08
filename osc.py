@@ -5,10 +5,7 @@ from utils import remap
 from utils import Target
 from utils import debug
 from barco import send_barco_xml
-from barco import get_barco_layers
 
-program_start = time.time()
-last_packet = 0
 # ---------------------------------------------------------------------------- #
 #                                 OSC ARGUMENTS                                #
 # ---------------------------------------------------------------------------- #
@@ -31,26 +28,15 @@ def handle_args_3(address, arg_1, arg_2, arg_3):
 
 
 def osc_to_barco(msg):
-    global last_packet
-    current_packet = time.time() - program_start
-    is_program_odd = False
-
-    if msg.target != Target.BOTH and current_packet > last_packet + 1:
-        # is_program_odd = get_barco_layers()
-        pass
-
     if msg.is_fade:
-        fade_xml_value(msg.target,msg.fade_start,msg.fade_end,msg.fade_time,msg.destination,msg.layer)
+        fade_xml_value(msg.fade_start,msg.fade_end,msg.fade_time,msg.destination,msg.layer)
     else:
-        send_barco_xml(msg.target,msg.destination,msg.layer,msg.value)
-
-    last_packet = current_packet
-
+        send_barco_xml(msg.destination,msg.layer,msg.value)
 # ---------------------------------------------------------------------------- #
 #                                  FADE VALUE                                  #
 # ---------------------------------------------------------------------------- #
 
-def fade_xml_value(target: Target, value_1: str, value_2: str, speed: str, screen: Union[int,str],layers: list):
+def fade_xml_value(value_1: str, value_2: str, speed: str, screen: Union[int,str],layers: list):
 
     try:
         value_1 = float(value_1)
@@ -80,7 +66,7 @@ def fade_xml_value(target: Target, value_1: str, value_2: str, speed: str, scree
         value = low_value
         increment = (high_value - low_value) / num_values
         while value <= high_value:
-            send_barco_xml(target, screen,layers,value)
+            send_barco_xml(screen,layers,value)
             time.sleep(delay)
             value += increment
     else:
@@ -88,7 +74,7 @@ def fade_xml_value(target: Target, value_1: str, value_2: str, speed: str, scree
         value = high_value
         increment = (low_value - high_value) / num_values
         while value >= low_value:
-            send_barco_xml(target, screen,layers,value)
+            send_barco_xml(screen,layers,value)
             time.sleep(delay)
             value += increment
 

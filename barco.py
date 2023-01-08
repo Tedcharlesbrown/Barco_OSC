@@ -1,8 +1,5 @@
 import socket
 from typing import Union
-from utils import Target
-import requests
-import json
 
 BARCO_IP_ADDRESS = ""
 
@@ -28,7 +25,7 @@ def convert_layer_id(n: str) -> int:
     else:
         return n
 
-def send_barco_xml(target: Target, screenDest_id: str, layers: str, opacity: int):
+def send_barco_xml(screenDest_id: str, layers: str, opacity: int):
     global BARCO_IP_ADDRESS
     # global LATENCY, latency_average, over_average
     
@@ -83,54 +80,3 @@ def send_barco_xml(target: Target, screenDest_id: str, layers: str, opacity: int
 
     # Send the XML data over the socket
     s.sendall(xml_data.encode())
-
-def get_barco_layers() -> bool: 
-    """Returns false if 'evens' are program, true if 'odds' are program"""
-    offline = True
-    data = None
-
-    # ---------------------------------------------------------------------------- #
-    #                     REQUEST ONLY WORKS WITH ACTUAL BARCO                     #
-    # ---------------------------------------------------------------------------- #
-    if (offline == False):
-        global BARCO_IP_ADDRESS
-        # Set the URL and headers
-        url = f"http://{BARCO_IP_ADDRESS}:9999"
-        headers = {"Content-Type": "application/json"}
-
-        # Create the JSON message
-        message = {
-            "params": {"id": 0},
-            "method": "listContent",
-            "id": "1234",
-            "jsonrpc": "2.0"
-        }
-
-        # Send the request
-        response = requests.post(url, headers=headers, json=message)
-        
-        # Extract the JSON data from the response
-        data = response.json()
-        # Print the response
-        print(response.text)
-
-    # ---------------------------------------------------------------------------- #
-    #                   ONLY FOR OFFLINE EDITING, USE SAMPLE JSON                  #
-    # ---------------------------------------------------------------------------- #
-
-    else:
-        # Open the JSON file
-        with open('sample_json/sample_1.json', 'r') as f:
-            # Load the JSON data into a Python object
-            data = json.load(f)
-
-
-    # ---------------------------------------------------------------------------- #
-    #                                  END IF ELSE                                 #
-    # ---------------------------------------------------------------------------- #
-    # TODO IF NEEDED, GET ALL LAYERS
-    
-    # layer_0 = data['result']['response']['Layers'][0]['id']
-    is_preview = bool(data['result']['response']['Layers'][0]['PvwMode'])
-    
-    # print(is_preview)

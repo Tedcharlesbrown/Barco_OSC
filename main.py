@@ -9,30 +9,28 @@ import osc4py3
 from osc import *
 from barco import set_barco_address
 
-from barco import get_barco_layers
-
 # ---------------------------------------------------------------------------- #
 #                                     MAIN                                     #
 # ---------------------------------------------------------------------------- #
 
 def main():
     global last_packet
-    # port_number = input("What port should be used to receive OSC? ")
-    # if port_number.isdigit():
-    #     port_number = int(port_number)
-    # else:
-    #     print("INVALID PORT NUMBER")
-    #     main()
-    # barco_ip_address = input("What is the IP address of the Barco Device? ")
-    # if isinstance(barco_ip_address,str):
-    #     print(f"Connecting to Barco Device at: {barco_ip_address}")
-    #     try:
-    #         ping(barco_ip_address)
-    #     except:
-    #         print("COULD NOT CONNECT TO BARCO DEVICE")
-    #         main()
-    barco_ip_address = "127.0.0.1"
-    port_number = 7400
+    port_number = input("What port should be used to receive OSC? ")
+    if port_number.isdigit():
+        port_number = int(port_number)
+    else:
+        print("INVALID PORT NUMBER")
+        main()
+    barco_ip_address = input("What is the IP address of the Barco Device? ")
+    if isinstance(barco_ip_address,str):
+        print(f"Connecting to Barco Device at: {barco_ip_address}")
+        try:
+            ping(barco_ip_address)
+        except:
+            print("COULD NOT CONNECT TO BARCO DEVICE")
+            main()
+    # barco_ip_address = "127.0.0.1"
+    # port_number = 7400
         
     print("PING SUCCESSFUL")
     set_barco_address(barco_ip_address)
