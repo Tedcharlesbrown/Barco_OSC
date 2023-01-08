@@ -1,91 +1,37 @@
 import time
 from typing import Union
 
-from utils import normalize
+from utils import remap
+from utils import Target
+from utils import debug
 from barco import send_barco_xml
-
-def get_address(address: str, x: int) -> str:
-    # print(address, type(address))
-
-    address_list = address.split('/')
-    address_list.pop(0)
-
-    if x > len(address_list):
-        return False
-    elif x == -1:
-        return len(address_list)
-    else:
-        return address_list[x]
 
 # ---------------------------------------------------------------------------- #
 #                                 OSC ARGUMENTS                                #
 # ---------------------------------------------------------------------------- #
 
 def handle_args_1(address, arg_1):
-    address_length = (get_address(address,-1) - 1)
-
-    main_address = get_address(address,0).lower()
-
-    # IF NO SCREEN DESTINATION GIVEN, ASSUME SCREEN DESTINATION 1
-    if main_address == "barco":
-        if get_address(address,1).lower() == "fade" and address_length == 4:
-            low_value = get_address(address,2)
-            high_value = get_address(address,3)
-            speed = get_address(address,4)
-            layers = arg_1.split(',')
-            fade_xml_value(low_value,high_value,speed,1,layers)
-        elif address_length == 1:
-            layers = get_address(address,1)
-            layers = layers.split(',')
-            send_barco_xml(1,layers,normalize(arg_1))
-        elif address_length == 2:
-            screen = get_address(address,1)
-            layers = get_address(address,2)
-            layers = layers.split(',')
-            send_barco_xml(screen,layers,normalize(arg_1))
-        else:
-            print(f"INVALID OSC RECEIVED - CHECK ADDRESS: {address}")
-    else:
-        print(f"INVALID OSC RECEIVED - CHECK ADDRESS: {address}")
+    msg = OSCMessage([address,[arg_1]])
+    # print(msg)
+    osc_to_barco(msg)
 
 def handle_args_2(address, arg_1, arg_2):
+    msg = OSCMessage([address,[arg_1,arg_2]])
+    # print(msg)
+    osc_to_barco(msg)
 
-    address_length = get_address(address,-1) - 1
-
-    main_address = get_address(address,0).lower()
-
-    if main_address == "barco":
-        if address_length == 0:
-            arg_1 = arg_1.split(',')
-            send_barco_xml(1,arg_1,normalize(arg_2))
-        elif get_address(address,1).lower() == "fade" and address_length == 4:
-            low_value = get_address(address,2)
-            high_value = get_address(address,3)
-            speed = get_address(address,4)
-            arg_2 = arg_2.split(',')
-            fade_xml_value(low_value,high_value,speed,arg_1,arg_2)
-        else:
-            # pass
-            print(f"INVALID OSC RECEIVED - CHECK ADDRESS: {address}")
-    else:
-        print(f"INVALID OSC RECEIVED - CHECK ADDRESS: {address}")
 
 def handle_args_3(address, arg_1, arg_2, arg_3):
+    msg = OSCMessage([address,[arg_1,arg_2,arg_3]])
+    # print(msg)
+    osc_to_barco(msg)
 
-    address_length = (get_address(address,-1) - 1)
 
-    main_address = get_address(address,0).lower()
-
-    if main_address == "barco":
-        if address_length == 0:
-            arg_2 = arg_2.split(',')
-            send_barco_xml(arg_1,arg_2,normalize(arg_3))
-        else:
-            print(f"INVALID OSC RECEIVED - CHECK ADDRESS: {address}")
+def osc_to_barco(msg):
+    if msg.is_fade:
+        fade_xml_value(msg.fade_start,msg.fade_end,msg.fade_time,msg.destination,msg.layer)
     else:
-        print(f"INVALID OSC RECEIVED - CHECK ADDRESS: {address}")
-
-
+        send_barco_xml(msg.destination,msg.layer,msg.value)
 # ---------------------------------------------------------------------------- #
 #                                  FADE VALUE                                  #
 # ---------------------------------------------------------------------------- #
@@ -114,7 +60,7 @@ def fade_xml_value(value_1: str, value_2: str, speed: str, screen: Union[int,str
 
     # Calculate the delay between each value
     delay = speed / num_values
-
+# 
     if count_up:
         # Count up from low_value to high_value
         value = low_value
@@ -133,3 +79,125 @@ def fade_xml_value(value_1: str, value_2: str, speed: str, screen: Union[int,str
             value += increment
 
 
+# ---------------------------------------------------------------------------- #
+#                                   PARSE OSC                                  #
+# ---------------------------------------------------------------------------- #
+
+class OSCMessage:
+    def __init__(self,packet):
+        self.destination = None
+        self.layer = None
+        self.is_fade = False
+        self.fade_start = None
+        self.fade_end = None
+        self.fade_time = None
+        self.target = Target.BOTH
+
+        self.has_destination = False
+        self.has_layer = False
+        self.value = None
+
+        self.parse_address(packet[0])
+        self.parse_arguments(packet[1])
+
+    def __str__(self):
+        return f'DESTINATION: {self.destination}, LAYER: {self.layer}, IS FADE: {self.is_fade}, FADE START: {self.fade_start}, FADE END: {self.fade_end}, FADE TIME: {self.fade_time}, LAYER TARGET: {self.target}, VALUE: {self.value}'
+
+
+# ---------------------------------------------------------------------------- #
+#                                    ADDRESS                                   #
+# ---------------------------------------------------------------------------- #
+
+    def parse_address(self, packet):
+        address = packet.split('/')
+        # remove the first '/' from the address list
+        address.pop(0)
+        # check if being sent to barco
+        if address[0].lower() == "barco":
+            
+            # remove 'barco' from the address list
+            address.pop(0)
+
+            # get layer target
+            self.parse_taget_layer(address)
+            address = self.parse_taget_layer(address)
+
+            # parse if predefined fade
+            address = self.parse_defined_fade(address)
+
+            # parse destination / layers from argument
+            if self.is_fade == False and len(address) != 0:
+                # parse destination 
+                self.destination = str(self.parse_screens(address,2)[0])
+                if self.destination != None:
+                    self.has_destination = True
+
+                # parse layer
+                self.layer = str(self.parse_screens(address,2)[1])
+                if self.layer != None:
+                    self.has_layer = True
+
+
+    def parse_taget_layer(self, address) -> list:
+        if len(address) != 0:
+            if address[0].lower() == "program":
+                address.pop(0);
+                self.target = Target.PROGRAM
+            elif address[0].lower() == "preview":
+                address.pop(0);
+                self.target = Target.PREVIEW
+
+        return address
+
+    def parse_defined_fade(self, address) -> list:
+        if len(address) != 0:
+            if address[0].lower() == "fade":
+                self.is_fade = True
+                address.pop(0)
+                self.fade_start = address[0]
+                address.pop(0)
+                self.fade_end = address[0]
+                address.pop(0)
+                self.fade_time = address[0]
+
+        return address
+
+# ---------------------------------------------------------------------------- #
+#                                   ARGUMENTS                                  #
+# ---------------------------------------------------------------------------- #
+
+
+    def parse_arguments(self,arguments):
+        if self.is_fade:
+            self.layer = arguments[-1]
+            if len(arguments) == 2:
+                self.destination = arguments[0]
+            else:
+                self.destination = 1
+        else:
+            if self.has_destination == False:
+                self.destination = str(self.parse_screens(arguments,3)[0])
+            if self.has_layer == False:
+                self.layer = str(self.parse_screens(arguments,3)[1])
+
+            # self.value = arguments[-1]
+            self.value = self.normalize_value(arguments[-1])
+
+
+    def parse_screens(self,args,expected) -> list:
+        if len(args) != 0:
+            if len(args) >= expected:
+                return [args[0],args[1]]
+            else:
+                return [1,args[0]]
+            
+
+# ---------------------------------------------------------------------------- #
+#                                     VALUE                                    #
+# ---------------------------------------------------------------------------- #
+
+    def normalize_value(self, value):
+        if isinstance(value, float):
+            return remap(value,0,1,0,100)
+        else:
+            return value
